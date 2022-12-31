@@ -5,6 +5,7 @@ import { format } from "date-fns";
 
 import born from "../media/born.png";
 import "react-day-picker/dist/style.css";
+import SpeedDial from "./SpeedDial";
 
 const plant = {
   name: "plant",
@@ -61,6 +62,7 @@ const PlantView = () => {
   return (
     <div className="container mx-auto flex flex-col gap-5  items-center mt-10">
       <div className="text-4xl font-black text-green-300">Buganvilia</div>
+      <SpeedDial />
       <img
         className="mask mask-squircle "
         src="https://placeimg.com/250/250/nature"
@@ -79,7 +81,7 @@ const PlantView = () => {
           onClick={handleShowInfo}
           className="collapse-title text-xl font-medium "
         >
-          Data 🛈
+          Data
         </div>
 
         <div className="collapse-content">
@@ -97,10 +99,6 @@ const PlantView = () => {
         </div>
         {/* <div>jaaj</div> */}
       </div>
-
-      <label htmlFor="my-modal-5" className="btn btn-primary">
-        add info
-      </label>
 
       <OutsideClickHandler onOutsideClick={hideTrack}>
         <div
@@ -135,9 +133,6 @@ const PlantView = () => {
         </div>
       </OutsideClickHandler>
 
-      <label htmlFor="my-modal-4" className="btn btn-success">
-        add tracking
-      </label>
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label
@@ -223,6 +218,7 @@ const PlantView = () => {
             placeholder="Type here"
             className="input input-bordered  w-full max-w-xs"
             onChange={updateInfo}
+            autoFocus
           />
           <button onClick={sendInfo} className="btn btn-secondary mt-5 w-full">
             Enviar
