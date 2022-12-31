@@ -1,50 +1,14 @@
 // import plant1 from "https://www.ikea.com/mx/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_pe686835_s5.jpg?f=s";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ModalFileDate from "./ModalFileDate";
 import axios from "axios";
 import { vars } from "./Host";
-const plantss = [
-  {
-    name: "plan1",
-    image:
-      "https://www.ikea.com/mx/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_pe686835_s5.jpg?f=s",
-  },
-  {
-    name: "plan2",
-    image: "https://placeimg.com/640/480/nature",
-  },
-  {
-    name: "plan3",
-    image: "https://placeimg.com/640/480/nature",
-  },
-  {
-    name: "plan4",
-    image:
-      "https://www.ikea.com/mx/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_pe686835_s5.jpg?f=s",
-  },
-  {
-    name: "plan5",
-    image:
-      "https://www.ikea.com/mx/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_pe686835_s5.jpg?f=s",
-  },
-  {
-    name: "plan6",
-    image: "https://placeimg.com/640/480/nature",
-  },
-  {
-    name: "plan3",
-    image: "https://placeimg.com/640/480/nature",
-  },
-  {
-    name: "plan7",
-    image:
-      "https://www.ikea.com/mx/en/images/products/fejka-artificial-potted-plant-with-pot-in-outdoor-succulent__0614211_pe686835_s5.jpg?f=s",
-  },
-];
 
 const Plants = () => {
   const mainData = JSON.parse(localStorage.getItem("GreenHouse"));
+  const navigate = useNavigate();
+
   const [plantsAPI, setPlantsAPI] = useState([]);
   const [plants, setPlants] = useState();
   const searchPlant = (e) => {
@@ -52,24 +16,21 @@ const Plants = () => {
     const results = plantsAPI.filter((plant) => {
       return plant.name.toLowerCase().includes(query);
     });
-    console.log(e.target.value.length);
+    // console.log(e.target.value.length);
     if (results.length === 0) {
-      setPlants(plantss);
+      setPlants(plantsAPI);
     } else {
       setPlants(results);
     }
-
-    console.log(results);
   };
-
-  useEffect(() => {
+  const getData = () => {
     try {
       axios
         .get(`${vars.host}gs-plants/${mainData._id}`)
         .then((res) => {
           setPlantsAPI(res.data);
           setPlants(res.data);
-          // console.log(res.data.length);
+          console.log(res.data);
           // console.log(plants && plants.length);
         })
         .catch((err) => {
@@ -79,6 +40,11 @@ const Plants = () => {
       // console.(error);
       // alert(error);
     }
+  };
+
+  useEffect(() => {
+    getData();
+    mainData === null && navigate("/validate");
   }, []);
 
   return (
@@ -120,12 +86,6 @@ const Plants = () => {
               onChange={searchPlant}
               required
             />
-            {/* <button
-              type="submit"
-              className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Search
-            </button> */}
           </div>
         </form>
         <label htmlFor="my-modal-7">
@@ -137,7 +97,7 @@ const Plants = () => {
         {plants && plants.length > 0 && mainData ? (
           plants.map((plant, key) => {
             return (
-              <Link key={key} to="/plant">
+              <Link key={key} to={`/plant/${plant._id}`}>
                 <div>
                   <div className="avatar">
                     <div className="w-24  rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
@@ -174,7 +134,7 @@ const Plants = () => {
           </div>
         )}
       </div>
-      <ModalFileDate />
+      <ModalFileDate getData={getData} />
     </>
   );
 };

@@ -8,7 +8,7 @@ const Routers = () => {
     <Routes>
       <Route path="/" element={<Main />}></Route>
       <Route path="/plants" element={<Plants />}></Route>
-      <Route path="/plant" element={<PlantView />}></Route>
+      <Route path="/plant/:id" element={<PlantView />}></Route>
       <Route path="/validate" element={<GsForm />}></Route>
     </Routes>
   );

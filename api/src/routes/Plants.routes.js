@@ -15,5 +15,8 @@ router.get("/plant/:id", plantCtrl.getPlant);
 router.get("/gs-plants/:id", plantCtrl.getGreenHousePlants);
 router.post("/create-plant", plantCtrl.createPlant);
 router.delete("/delete-plant/:id", plantCtrl.deletePlant);
+router.put("/update-plant/:id", plantCtrl.updatePlant);
+router.post("/add-info/:id", plantCtrl.addPlantInfo);
+router.post("/add-trackings/:id", plantCtrl.addTrackings);
 
 export default router;

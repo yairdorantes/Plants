@@ -45,7 +45,9 @@ const SpeedDial = () => {
                 data-tooltip-placement="left"
                 className="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400"
               >
-                <img src={camera} className="w-1/2" alt="" />
+                <label htmlFor="my-modal-7">
+                  <img src={camera} className="w-1/2 mx-auto" alt="" />
+                </label>
               </div>
             </label>
           </div>
