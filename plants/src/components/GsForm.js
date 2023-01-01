@@ -11,7 +11,6 @@ const initilForm = {
 const GsForm = () => {
   const [tab, setTab] = useState(1);
   const [form, setForm] = useState(initilForm);
-  const [res, setRes] = useState("res");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -54,7 +53,6 @@ const GsForm = () => {
 
   return (
     <>
-      {res}
       <div className="card mx-auto mt-10 w-96 badge-ghost text-primary-content">
         <div className="card-body">
           <div className="tabs tabs-boxed">
@@ -137,10 +135,10 @@ const GsForm = () => {
                 for="password"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Password
+                clave
               </label>
               <input
-                type="password"
+                type="text"
                 onChange={handleChange}
                 value={form.password}
                 name="password"

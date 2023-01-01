@@ -104,7 +104,7 @@ const Plants = () => {
                       <img src={plant.photo} />
                     </div>
                   </div>
-                  <div className="font-medium mt-3 text-center text-blue-600 dark:text-blue-500 hover:underline">
+                  <div className="font-medium mt-3 text-center text-green-300 hover:underline">
                     {plant.name}
                   </div>
                 </div>

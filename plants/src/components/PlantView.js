@@ -60,10 +60,13 @@ const PlantView = () => {
   return (
     <>
       {plant && (
-        <div className="container mx-auto flex flex-col gap-5  items-center mt-10">
+        <div className="container mx-auto flex flex-col gap-5 mb-[200px] items-center mt-10">
           <div className="text-4xl font-black text-green-300">{plant.name}</div>
           <SpeedDial />
-          <img className="mask mask-squircle " src={plant.photo} />
+          <img
+            className="mask mask-squircle w-1/2 sm:w-auto"
+            src={plant.photo}
+          />
           <div className="flex items-cente gap-3">
             <img className="w-7" src={born} alt="" />
             <div className="font-bold">{plant.born}</div>
@@ -111,7 +114,11 @@ const PlantView = () => {
                   <ul className="steps steps-vertical gap-3">
                     {plant.tracking.map((item, key) => {
                       return (
-                        <li data-content="●" className="step step-primary ">
+                        <li
+                          data-content="●"
+                          key={key}
+                          className="step step-primary "
+                        >
                           <div className="flex justify-center items-center gap-5">
                             <img
                               className="rounded-full mb-3 w-[180px] h-[180px] object-cover"
