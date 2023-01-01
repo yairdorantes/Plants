@@ -11,6 +11,7 @@ const initilForm = {
 const GsForm = () => {
   const [tab, setTab] = useState(1);
   const [form, setForm] = useState(initilForm);
+  const [res, setRes] = useState("res");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,6 +23,7 @@ const GsForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // alert(form);
     if (tab === 1) {
       axios
         .post(`${vars.host}validate-gs`, form)
@@ -41,7 +43,6 @@ const GsForm = () => {
       axios
         .post(`${vars.host}create-gs`, form)
         .then((res) => {
-          console.log(res);
           localStorage.setItem("GreenHouse", JSON.stringify(res.data.GS));
           navigate("/plants");
         })
@@ -53,6 +54,7 @@ const GsForm = () => {
 
   return (
     <>
+      {res}
       <div className="card mx-auto mt-10 w-96 badge-ghost text-primary-content">
         <div className="card-body">
           <div className="tabs tabs-boxed">
